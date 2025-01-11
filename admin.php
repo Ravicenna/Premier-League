@@ -99,6 +99,9 @@ if (!isset($_SESSION['username'])) {
                 <a class="nav-link text-white" href="admin.php?page=gallery">Gallery</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link text-white" href="index.php">Homepage</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link text-white" href="admin.php?page=profile">Profile</a>
             </li> 
             <li class="nav-item dropdown">
