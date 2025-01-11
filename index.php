@@ -105,29 +105,46 @@ include "koneksi.php";
     </section>
 
 <!-- Gallery -->
-    <section id="gallery" class="text-center p-5">
-        <div class="container">
-          <h1 class="fw-bold display-5 pb-3" style="color: #430A5D;">Gallery</h1>
-            <div id="carouselExample" class="carousel slide">
-                <div class="carousel-inner p-3">
-                  <div class="carousel-item active">
-                    <img src="img/gallery1.jpg" class="d-block w-100" alt="Image 1">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="img/gallery2.jpg" class="d-block w-100" alt="Image 3">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-        </div>
-    </section>
+<section id="gallery" class="text-center p-5">
+  <div class="container">
+    <h1 class="fw-bold display-5 pb-3" style="color: #430A5D;">Gallery</h1>
+
+    <!-- Carousel -->
+    <div id="carouselExample" class="carousel slide">
+      <div class="carousel-inner p-3">
+        <?php
+        // Query to fetch gallery images
+        $sql2 = "SELECT * FROM gallery ORDER BY tanggal DESC";
+        $hasil2 = $conn->query($sql2);
+
+        // Set a flag for the first image to make it active
+        $isFirst = true;
+
+        // Loop through the gallery data
+        while($row = $hasil2->fetch_assoc()) {
+          $activeClass = $isFirst ? 'active' : ''; // Set 'active' class for the first image
+          $isFirst = false;
+        ?>
+          <div class="carousel-item <?= $activeClass ?>">
+            <img src="img/<?= $row["gambar"] ?>" class="d-block w-100" alt="Gallery Image">
+          </div>
+        <?php
+        }
+        ?>
+      </div>
+
+      <!-- Carousel Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</section>
 
 <!-- schedule begin -->
 <section id="schedule" class="text-center p-5">
